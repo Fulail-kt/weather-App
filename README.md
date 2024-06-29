@@ -55,8 +55,13 @@ This React.js application serves as a dynamic weather dashboard, providing real-
    ```bash
    npm install
    ```
+3. **Setup .env**
 
-3. **Run the application**
+   ```bash
+   VITE_APP_API_KEY="your openWeatherApiKey"
+   ```
+
+4. **Run the application**
 
    ```bash
    npm start
