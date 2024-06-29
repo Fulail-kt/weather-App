@@ -108,7 +108,12 @@ function Home() {
 
   return (
     <div className="">
-      <h1>Weather Dashboard</h1>
+      <h1 className="font-bold tracking-wide text-4xl">
+        <span className="text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text">
+          Weather Dashboard
+        </span>
+      </h1>
+
       <UserGroupToggle setUserGroup={setUserGroup} />
       {weatherData && (
         <WeatherDisplay
