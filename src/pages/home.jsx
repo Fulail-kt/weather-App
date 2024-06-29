@@ -7,6 +7,14 @@ function Home() {
   const [weatherData, setWeatherData] = useState(null);
   const [currentTime, setCurrentTime] = useState(null);
   const [userGroup, setUserGroup] = useState("general");
+  const [searchCity, setSearchCity] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchCity.trim()) {
+      fetchWeatherData(null, null, searchCity.trim());
+    }
+  };
 
   const fetchWeatherData = async (latitude, longitude, city) => {
     try {
@@ -113,6 +121,25 @@ function Home() {
           Weather Dashboard
         </span>
       </h1>
+
+      <form
+        onSubmit={handleSearch}
+        className=" flex w-full justify-center gap-x-2 my-4"
+      >
+        <input
+          type="text"
+          value={searchCity}
+          onChange={(e) => setSearchCity(e.target.value)}
+          placeholder="Enter city name"
+          className="p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-sm text-white p-1 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Search
+        </button>
+      </form>
 
       <UserGroupToggle setUserGroup={setUserGroup} />
       {weatherData && (
