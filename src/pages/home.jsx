@@ -9,6 +9,7 @@ function Home() {
   const [userGroup, setUserGroup] = useState("general");
   const [searchCity, setSearchCity] = useState("");
 
+  // function to perform search
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchCity.trim()) {
@@ -16,6 +17,7 @@ function Home() {
     }
   };
 
+  // api to get weather details with city(lon,lat)
   const fetchWeatherData = async (latitude, longitude, city) => {
     try {
       const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -51,6 +53,8 @@ function Home() {
     }
   };
 
+  // api to get the air Quality data
+
   const fetchAirQualityData = async (lat, lon) => {
     try {
       const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -63,6 +67,7 @@ function Home() {
     }
   };
 
+  // api to get forecast Data of 7 days
   const fetchForecastData = async (lat, lon) => {
     try {
       const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -75,6 +80,7 @@ function Home() {
     }
   };
 
+  // to get current time with latitude and longitude
   const fetchCurrentTime = async (latitude, longitude, city) => {
     try {
       let url;
@@ -102,6 +108,7 @@ function Home() {
   };
 
   useEffect(() => {
+    // to get current location
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -122,6 +129,7 @@ function Home() {
         </span>
       </h1>
 
+      {/* Search inbox to find the weather of given city */}
       <form
         onSubmit={handleSearch}
         className=" flex w-full justify-center gap-x-2 my-4"
@@ -141,7 +149,9 @@ function Home() {
         </button>
       </form>
 
+      {/* Different modules Button component */}
       <UserGroupToggle setUserGroup={setUserGroup} />
+      {/* Weather display component (to display differently for each modules) */}
       {weatherData && (
         <WeatherDisplay
           data={weatherData}
